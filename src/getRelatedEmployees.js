@@ -10,10 +10,10 @@ function getRelatedEmployees(managerId) {
   const funcionarios = employees.filter((funcionario) =>
     (funcionario.managers.includes((managerId))));
 
-  if (isManager(managerId) === false) {
-    throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
+  if (isManager(managerId)) {
+    return funcionarios.map((criaArray) => `${criaArray.firstName} ${criaArray.lastName}`);
   }
-  return funcionarios.map((criaArray) => `${criaArray.firstName} ${criaArray.lastName}`);
+  throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
 }
 
 module.exports = { isManager, getRelatedEmployees };
